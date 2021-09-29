@@ -12,9 +12,10 @@ enum{
 };
 
 // 몬스터와 플레이어가 싸울 때 실행될 함수. 반환값은 플레이어가 이겼을 때 True를 졌을 때 False를 반환한다.
-bool BattleScene();
+bool BattleScene(Player* player);
 
 int main() {
+  Player p;
   int Query;
   while(true){
     cout<<"-----------------------------------"<<endl;
@@ -24,7 +25,24 @@ int main() {
     cout<<"입력 > ";
     cin>>Query;
     if(Query == BATTLE){
-      BattleScene();
+      BattleScene(&p);
     }
+  }
+}
+
+// 슬라임 스텟 : 공  
+// 플레이어 스텟
+
+bool BattleScene(Player* player){
+  Slime monster;
+
+  // 무한 루프
+  while(true){
+    bool IsPlayerDead = player->IsGameOver();
+    
+    bool IsMonsterDead = monster.IsGameOver();
+
+    
+    
   }
 }

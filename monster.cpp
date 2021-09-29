@@ -1,4 +1,5 @@
 #include <iostream>
+#include "player.cpp"
 using namespace std;
 
 
@@ -33,7 +34,27 @@ public:
   }
 
   void SetHp(int hp){
+    // hp가 음수값이면 0으로 보정
+    if(hp<0) hp = 0;
     _hp = hp;
+  }
+
+  bool IsGameOver(){
+    if(_hp < 0){
+      _hp = 0;
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  void BeAttacked(Player* p){
+    int ResultDmg = p->GetDmg() - _def;
+    if(ResultDmg <= 0) 
+      ResultDmg=1;
+    
+    _hp-=ResultDmg;
   }
 };
 
