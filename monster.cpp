@@ -1,5 +1,4 @@
 #include <iostream>
-#include "player.cpp"
 using namespace std;
 
 
@@ -44,8 +43,7 @@ public:
   }
 
   bool IsGameOver(){
-    if(_hp < 0){
-      _hp = 0;
+    if(_hp == 0){
       return true;
     }
     else{
@@ -53,12 +51,24 @@ public:
     }
   }
 
-  void BeAttacked(Player* p){
-    int ResultDmg = p->GetDmg() - _def;
-    if(ResultDmg <= 0) 
-      ResultDmg=1;
-    
-    _hp-=ResultDmg;
+  string GetName(){
+    return _MobName;
+  }
+
+  bool AtkByOther(int Dmg){
+    int TrueDmg = Dmg - _def;
+    // trueDmg가 0이하이면 1로 값을 보정한다. 값을 0으로 보정할 경우 영원히 게임이 끝나지 않는 경우가 생김
+    if(TrueDmg <= 0 ) TrueDmg = 1;
+    _hp-=TrueDmg;
+    // _Hp 가 음수일 경우 논리에 모순되므로 0으로 값을 보정
+    if(_hp < 0 ) _hp = 0;
+
+    // 싸우는 장면 텍스트로 연출
+    cout<<"플레이어의 턴!!"<<endl;
+    cout<<"플레이어에게 "<<TrueDmg<<"만큼의 피해를 받았습니다"<<endl;
+    cout<<_MobName<<"의 남은 체력 : "<<_hp<<endl;
+    if(_hp == 0) return true;
+    else return false;
   }
 };
 
