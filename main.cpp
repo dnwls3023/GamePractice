@@ -42,7 +42,22 @@ bool BattleScene(Player* player){
     
     bool IsMonsterDead = monster.IsGameOver();
 
+    // 둘다 살아 있으면 싸우는게 가능함
+    bool CanBattle = !IsPlayerDead && !IsMonsterDead;
     
-    
+    // 싸울 수 있다면
+    if(CanBattle){
+      // 플레이어가 몬스터를 공격하는
+
+      // 몬스터가 플레이어를 공격하는 시뮬레이션
+      int dmg = monster.GetDmg();
+      player->AtkByOther(dmg);
+      // 죽었으면
+      if(player->IsGameOver())
+    }
+    else{
+      // 둘중 하나가 죽었으면 누가 죽었는지를 반환값으로 전달한다.
+      return;
+    }
   }
 }

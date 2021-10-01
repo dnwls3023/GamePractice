@@ -39,6 +39,10 @@ public:
     _hp = hp;
   }
 
+  int GetDmg(){
+    return _atk;
+  }
+
   bool IsGameOver(){
     if(_hp < 0){
       _hp = 0;
