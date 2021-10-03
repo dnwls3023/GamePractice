@@ -12,12 +12,13 @@ enum{
   STATUS = 3,
 };
 
-// 몬스터와 플레이어가 싸울 때 실행될 함수. 반환값은 플레이어가 이겼을 때 True를 졌을 때 False를 반환한다.
+// 1를 반환하면 플레이어가 이긴 것 , 0를 반환하면 몬스터가 이긴 것, -1 무승부
 int BattleScene(Player* player);
 
 int main() {
   Player p;
   int Query;
+  // 게임오버하면 종료됨.
   while(true){
     cout<<"-----------------------------------"<<endl;
     cout<<"안녕하세요 허접한 MMORPG에 오신 것을 환영합니다"<<endl;
@@ -25,6 +26,9 @@ int main() {
     cout<<"참고로 잘못된 입력을 하게 될 경우엔 다시 입력을 하게 될 겁니다."<<endl;
     cout<<"입력 > ";
     cin>>Query;
+    // 입력값 1. 싸움, 2. 상점, 3. 상태확인
+
+    // 싸움(1)을 선택할때
     if(Query == BATTLE){
       int WhoWin = BattleScene(&p);
       if(WhoWin == 1){
@@ -35,6 +39,9 @@ int main() {
         cout<<"Game Over"<<endl;
         break;
       }
+    }
+    else if(Query == SHOP){
+
     }
     else if(Query == STATUS){
       p.PrintStatus();
